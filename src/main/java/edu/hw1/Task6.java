@@ -1,12 +1,14 @@
 package edu.hw1;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 public class Task6 {
 
+    private Task6() {
+
+    }
+
+    @SuppressWarnings("MagicNumber")
     public static int countK(int number) {
-        if (number<=1000 | number>9999){
+        if (number <= 1000 | number > 9999) {
             return -1;
         }
 
@@ -16,9 +18,10 @@ public class Task6 {
 
         // Преобразуем число в массив цифр
         int[] digits = new int[4];
+        int tempNum = number;
         for (int i = 0; i < 4; i++) {
-            digits[i] = number % 10;
-            number /= 10;
+            digits[i] = tempNum % 10;
+            tempNum /= 10;
         }
 
         // Сортируем цифры по возрастанию и убыванию
@@ -30,6 +33,7 @@ public class Task6 {
         return 1 + countK(diff); // К шагам добавляем 1 и рекурсивно вызываем функцию для новой разности.
     }
 
+    @SuppressWarnings("MagicNumber")
     private static int getNumberFromDigits(int[] digits, boolean ascending) {
         if (ascending) {
             // Сортировка по возрастанию

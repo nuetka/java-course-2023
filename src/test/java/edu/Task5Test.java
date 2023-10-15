@@ -32,5 +32,4 @@ public class Task5Test {
         assertThat(Task5.isPalindromeDescendant(1)).isTrue();
     }
 
-
 }

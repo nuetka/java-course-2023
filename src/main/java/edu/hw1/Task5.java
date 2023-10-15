@@ -1,22 +1,28 @@
 package edu.hw1;
 
 public class Task5 {
-    public static boolean isPalindromeDescendant(int number) {
-        if(number<0){
-            return false;
-        }
-        if (isPalindrome(number)) {
-            return true;
-        }
 
-        String numStr = String.valueOf(number);
-        while (numStr.length() > 1) {
-            numStr = createDescendant(numStr);
-            if (numStr.length() == 1) {
-                return false;
-            }
-            if (isPalindrome(Integer.parseInt(numStr))) {
+    private Task5() {
+
+    }
+
+    public static boolean isPalindromeDescendant(int number) {
+
+        if (number > 0) {
+
+            if (isPalindrome(number)) {
                 return true;
+            }
+
+            String numStr = String.valueOf(number);
+            while (numStr.length() > 1) {
+                numStr = createDescendant(numStr);
+                if (numStr.length() == 1) {
+                    return false;
+                }
+                if (isPalindrome(Integer.parseInt(numStr))) {
+                    return true;
+                }
             }
         }
 
@@ -24,6 +30,7 @@ public class Task5 {
     }
 
     public static boolean isPalindrome(int number) {
+
         String numStr = String.valueOf(number);
         int left = 0;
         int right = numStr.length() - 1;

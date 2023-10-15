@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Task7Test {
-   @Test
+    @Test
     void testRight() {
 
-        assertThat(Task7.rotateRight(8,1)).isEqualTo(4);
-        assertThat(Task7.rotateRight(1,1)).isEqualTo(1);
+        assertThat(Task7.rotateRight(8, 1)).isEqualTo(4);
+        assertThat(Task7.rotateRight(1, 1)).isEqualTo(1);
 
     }
 

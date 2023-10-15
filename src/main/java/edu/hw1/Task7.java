@@ -1,6 +1,11 @@
 package edu.hw1;
 
 public class Task7 {
+
+    private Task7() {
+
+    }
+
     public static int rotateRight(int n, int shift) {
         String binaryString = Integer.toBinaryString(n);
 
@@ -9,7 +14,7 @@ public class Task7 {
             binaryString = lastChar + binaryString.substring(0, binaryString.length() - 1);
         }
 
-        return Integer.parseInt(binaryString, 2) ;
+        return Integer.parseInt(binaryString, 2);
 
     }
 
@@ -21,6 +26,6 @@ public class Task7 {
             binaryString = binaryString.substring(1) + firstChar;
         }
 
-        return Integer.parseInt(binaryString, 2) ;
+        return Integer.parseInt(binaryString, 2);
     }
 }
