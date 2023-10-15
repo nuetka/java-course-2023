@@ -29,7 +29,7 @@ public class Task5 {
         return false;
     }
 
-    public static boolean isPalindrome(int number) {
+    private static boolean isPalindrome(int number) {
 
         String numStr = String.valueOf(number);
         int left = 0;
@@ -44,7 +44,7 @@ public class Task5 {
         return true;
     }
 
-    public static String createDescendant(String numStr) {
+    private static String createDescendant(String numStr) {
         StringBuilder descendant = new StringBuilder();
         for (int i = 0; i < numStr.length(); i += 2) {
             int digit1 = Character.getNumericValue(numStr.charAt(i));

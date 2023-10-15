@@ -2,31 +2,36 @@ package edu;
 
 import edu.hw1.Task1;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Task1Test {
-
-    @Test
-    public void testValidTime() {
-        assertThat(Task1.minutesToSeconds("01:00")).isEqualTo(60);
-        assertThat(Task1.minutesToSeconds("13:56")).isEqualTo(836);
-        assertThat(Task1.minutesToSeconds("999:59")).isEqualTo(59999);
+    @ParameterizedTest
+    @CsvSource({
+        "01:00, 60",
+        "13:56, 836",
+        "999:59, 59999"
+    })
+    public void testValidTime(String time, int expectedSeconds) {
+        assertThat(Task1.minutesToSeconds(time)).isEqualTo(expectedSeconds);
     }
 
-    @Test
-    public void testInvalidTime() {
-        assertThat(Task1.minutesToSeconds("10:60")).isEqualTo(-1);
-        assertThat(Task1.minutesToSeconds("12:61")).isEqualTo(-1);
-        assertThat(Task1.minutesToSeconds("abc:def")).isEqualTo(-1);
-        assertThat(Task1.minutesToSeconds("5")).isEqualTo(-1);
-        assertThat(Task1.minutesToSeconds("12:")).isEqualTo(-1);
-        assertThat(Task1.minutesToSeconds(":44")).isEqualTo(-1);
+    @ParameterizedTest
+    @ValueSource(strings = {"10:60", "12:61", "abc:def", "5", "12:", ":44"})
+    public void testInvalidTime(String time) {
+        assertThat(Task1.minutesToSeconds(time)).isEqualTo(-1);
     }
 
-    @Test
-    public void testEdgeCases() {
-        assertThat(Task1.minutesToSeconds("0:00")).isEqualTo(0);
-        assertThat(Task1.minutesToSeconds("0:59")).isEqualTo(59);
-        assertThat(Task1.minutesToSeconds("0:01")).isEqualTo(1);
+    @ParameterizedTest
+    @CsvSource({
+        "00:00, 0",
+        "0:59, 59",
+        "0:01, 1"
+    })
+    public void testEdgeCases(String time, int expectedSeconds) {
+        assertThat(Task1.minutesToSeconds(time)).isEqualTo(expectedSeconds);
     }
+  
 }

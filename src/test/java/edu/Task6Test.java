@@ -1,20 +1,32 @@
 package edu;
 
+import edu.hw1.Task1;
 import edu.hw1.Task6;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Task6Test {
-    @Test
-    void countSteps() {
 
-        assertThat(Task6.countK(3524)).isEqualTo(3);
-        assertThat(Task6.countK(6621)).isEqualTo(5);
-        assertThat(Task6.countK(6554)).isEqualTo(4);
-        assertThat(Task6.countK(1234)).isEqualTo(3);
-        assertThat(Task6.countK(6174)).isEqualTo(0);
-        assertThat(Task6.countK(352467)).isEqualTo(-1);
-        assertThat(Task6.countK(0)).isEqualTo(-1);
+    @ParameterizedTest
+    @ValueSource(ints = {352467, 0})
+    public void testIncorrectData(int input) {
+        assertEquals(-1, Task6.countK(input));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "3524, 3",
+        "6621, 5",
+        "6554, 4",
+        "1234, 3",
+        "6174, 0"
+    })
+    void countSteps(int input, int expected) {
+        assertEquals(expected, Task6.countK(input));
     }
 
 }
