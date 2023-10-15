@@ -1,7 +1,6 @@
 package edu;
 
 import edu.hw1.Task1;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -33,5 +32,5 @@ public class Task1Test {
     public void testEdgeCases(String time, int expectedSeconds) {
         assertThat(Task1.minutesToSeconds(time)).isEqualTo(expectedSeconds);
     }
-  
+
 }
