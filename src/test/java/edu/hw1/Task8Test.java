@@ -1,4 +1,4 @@
-package edu;
+package edu.hw1;
 
 import edu.hw1.Task8;
 import org.junit.jupiter.api.Test;
