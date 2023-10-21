@@ -1,6 +1,5 @@
 package edu.hw1;
 
-import edu.hw1.Task5;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
