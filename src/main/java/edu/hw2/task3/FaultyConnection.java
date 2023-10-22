@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class FaultyConnection implements Connection {
     private static final int MAX_NUMBER = 100;
-    private static final int MAX_TRUE = 95;
+    private static final int MAX_TRUE = 99;
 
     @Override
     public void execute(String command) {

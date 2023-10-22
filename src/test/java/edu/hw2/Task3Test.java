@@ -8,31 +8,27 @@ import static org.assertj.core.api.Assertions.*;
 public class Task3Test {
     private static final int MAX_ATTEMPTS = 5;
 
-
-
     @RepeatedTest(MAX_ATTEMPTS)
     void whenStableConnection_thenCommandAlwaysExecutesSuccessfully(RepetitionInfo repetitionInfo) {
         ConnectionManager manager =
-            new DefaultConnectionManager(); // Допустим, DefaultConnectionManager обычно предоставляет StableConnection
+            new DefaultConnectionManager();
         PopularCommandExecutor executor = new PopularCommandExecutor(manager, MAX_ATTEMPTS);
 
         assertThatCode(() -> executor.tryExecute("ls"))
-            .as("Attempt: " + repetitionInfo.getCurrentRepetition()) // Это добавлено для отображения текущей попытки
-        //assertThatCode(() -> executor.tryExecute("ls"))
+            .as("Attempt: " + repetitionInfo.getCurrentRepetition())
             .doesNotThrowAnyException();
 
     }
 
+    @RepeatedTest(MAX_ATTEMPTS)
+    void whenFaultyConnectionAndMaxAttemptsExceeded_thenConnectionExceptionIsThrown(RepetitionInfo repetitionInfo) {
+        ConnectionManager manager = new FaultyConnectionManager();
+        PopularCommandExecutor executor = new PopularCommandExecutor(manager, MAX_ATTEMPTS);
 
-@RepeatedTest(MAX_ATTEMPTS)
-void whenFaultyConnectionAndMaxAttemptsExceeded_thenConnectionExceptionIsThrown(RepetitionInfo repetitionInfo) {
-    ConnectionManager manager = new FaultyConnectionManager();
-    PopularCommandExecutor executor = new PopularCommandExecutor(manager, MAX_ATTEMPTS);
-
-    assertThatThrownBy(() -> executor.tryExecute("ls"))
-        .as("Attempt: " + repetitionInfo.getCurrentRepetition())  // Это добавлено для отображения текущей попытки
-        .isInstanceOf(ConnectionException.class)
-        .hasCauseInstanceOf(ConnectionException.class); // проверяем, что исключение содержит причину в виде ConnectionException
-}
+        assertThatThrownBy(() -> executor.tryExecute("ls"))
+            .as("Attempt: " + repetitionInfo.getCurrentRepetition())  // Это добавлено для отображения текущей попытки
+            .isInstanceOf(ConnectionException.class)
+            .hasCauseInstanceOf(ConnectionException.class); // проверяем, что исключение содержит причину в виде ConnectionException
+    }
 }
 
