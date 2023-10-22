@@ -10,32 +10,23 @@ public final class PopularCommandExecutor {
     }
 
     public void tryExecute(String command) {
-        Connection connection = null;
         int attempt = 0;
         boolean success = false;
         Exception cause = null;
 
         while (!success && attempt < maxAttempts) {
-            try {
-                connection = manager.getConnection();
+            try (Connection connection = manager.getConnection()) {
                 connection.execute(command);
                 success = true;
-            } catch (ConnectionException e) {
+            } catch (RuntimeException e) {
                 cause = e;
                 attempt++;
-            } finally {
-                if (connection != null) {
-                    try {
-                        connection.close();
-                    } catch (Exception e) {
-                        // Обработка исключения при закрытии соединения
-                    }
-                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         }
 
         if (!success) {
-            //throw new ConnectionException("Failed to execute command after " + maxAttempts + " attempts.", cause);
             throw new ConnectionException(cause);
 
         }

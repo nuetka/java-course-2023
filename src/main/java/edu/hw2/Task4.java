@@ -7,9 +7,11 @@ public class Task4 {
     }
 
     public static CallingInfo callingInfo() {
-        StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
-        String className = stackTraceElements[2].getClassName();
-        String methodName = stackTraceElements[2].getMethodName();
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        StackTraceElement callingMethod = stackTrace[1];
+        String className = callingMethod.getClassName();
+        String methodName = callingMethod.getMethodName();
+
         return new CallingInfo(className, methodName);
     }
 
