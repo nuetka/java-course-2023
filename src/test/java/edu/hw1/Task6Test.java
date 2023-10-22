@@ -1,6 +1,5 @@
-package edu;
+package edu.hw1;
 
-import edu.hw1.Task6;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
