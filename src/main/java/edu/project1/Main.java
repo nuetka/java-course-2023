@@ -10,7 +10,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        List<String> words = Arrays.asList("daisy", "gggg");
+        List<String> words = List.of("daisy");
         ConsoleHangman game = new ConsoleHangman();
         game.run(words);
     }
