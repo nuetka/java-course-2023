@@ -1,6 +1,5 @@
 package edu.project1;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -10,7 +9,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        List<String> words = Arrays.asList("daisy");
+        List<String> words = List.of("daisy");
         ConsoleHangman game = new ConsoleHangman();
         game.run(words);
     }
