@@ -1,8 +1,8 @@
 package edu.hw3.Task6;
 
 public class Stock {
-    private String symbol;
-    private double price;
+    private final String symbol;
+    private final double price;
 
     public Stock(String symbol, double price) {
         this.symbol = symbol;
@@ -16,4 +16,5 @@ public class Stock {
     public double getPrice() {
         return price;
     }
+
 }
