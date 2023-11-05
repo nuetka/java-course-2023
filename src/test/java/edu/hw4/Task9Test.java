@@ -14,7 +14,6 @@ public class Task9Test {
         Animal giraffe = new Animal("Giraffe", Animal.Type.BIRD, Animal.Sex.M, 4, 540, 300, false);
         Animal zebra = new Animal("Zebra", Animal.Type.FISH, Animal.Sex.F, 5, 150, 200, false);
 
-        int k=300;
         List<Animal> animals = Arrays.asList(elephant, zebra, lion, giraffe);
 
         assertThat(Task9.calculateSumOfPaws(animals)).isEqualTo(8);

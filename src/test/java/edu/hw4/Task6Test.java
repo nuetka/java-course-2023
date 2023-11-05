@@ -1,11 +1,9 @@
 package edu.hw4;
 
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import static edu.hw4.Task3.countAnimalsByType;
 import static java.util.Map.entry;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
