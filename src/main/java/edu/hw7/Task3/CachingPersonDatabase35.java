@@ -7,14 +7,14 @@ import java.util.Map;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class CachingPersonDatabase3_5 implements PersonDatabase {
+public class CachingPersonDatabase35 implements PersonDatabase {
     private final Map<Integer, Person> personMap;
     private final Map<String, List<Integer>> nameIndex;
     private final Map<String, List<Integer>> addressIndex;
     private final Map<String, List<Integer>> phoneIndex;
     private final ReadWriteLock lock;
 
-    public CachingPersonDatabase3_5() {
+    public CachingPersonDatabase35() {
         this.personMap = new HashMap<>();
         this.nameIndex = new HashMap<>();
         this.addressIndex = new HashMap<>();

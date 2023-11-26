@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 public class CachingPersonDatabase implements PersonDatabase {
     private final Map<Integer, Person> personMap;
     private final Map<String, List<Integer>> nameIndex;
