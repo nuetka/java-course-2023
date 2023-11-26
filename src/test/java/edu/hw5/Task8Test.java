@@ -3,7 +3,6 @@ package edu.hw5;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.assertThat;
-
 public class Task8Test {
     @ParameterizedTest
     @CsvSource({

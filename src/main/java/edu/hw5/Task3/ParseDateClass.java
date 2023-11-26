@@ -8,7 +8,9 @@ public class ParseDateClass {
     private ParseDateClass() {
     }
 
-    public static Optional<LocalDate> parseDate(String str) {
+    private static final DateParser PARSER_CHAIN;
+
+    static {
         DateParser parser = new FormatDateParser("yyyy-MM-dd");
         DateParser nextParser = new FormatDateParser("d/M/yyyy");
         DateParser shortYearParser = new FormatDateParser("d/M/yy");
@@ -20,6 +22,10 @@ public class ParseDateClass {
         shortYearParser.setNext(wordParser);
         wordParser.setNext(daysAgoParser);
 
-        return parser.parse(str);
+        PARSER_CHAIN = parser;
+    }
+
+    public static Optional<LocalDate> parseDate(String str) {
+        return PARSER_CHAIN.parse(str);
     }
 }
