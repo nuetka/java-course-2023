@@ -7,6 +7,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class Task2Test {
     @Test
     public void test() {
-        assertThat(FactorialCalculator.run(5)).isEqualTo(120);
+        assertThat(FactorialCalculator.factorial(5)).isEqualTo(120);
     }
 }

@@ -13,8 +13,4 @@ public class FactorialCalculator {
             .parallel()
             .reduce(1, (long a, long b) -> a * b);
     }
-
-    public static long run(int number) {
-        return factorial(number);
-    }
 }
