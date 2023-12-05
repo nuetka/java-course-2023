@@ -12,10 +12,10 @@ public class Task3Test {
         CachingPersonDatabase database = new CachingPersonDatabase();
         database.add(new Person(1, "John", "123 Main St", "555-1234"));
         database.add(new Person(2, "Jane", "456 Elm St", "555-5678"));
-        database.add(new Person(3, "John", "789 Oak St", "555-9012"));
+        database.add(new Person(3, "John", null, "555-9012"));
         List<Person> result = database.findByName("John");
-        assertThat(result).hasSize(2);
-        assertThat(result).extracting(Person::id).containsExactly(1, 3);
+        assertThat(result).hasSize(1);
+        assertThat(result).extracting(Person::id).containsExactly(1);
     }
 
 
@@ -34,11 +34,11 @@ public class Task3Test {
     void testFindByPhone() {
         CachingPersonDatabase database = new CachingPersonDatabase();
         database.add(new Person(1, "John", "123 Main St", "555-1234"));
-        database.add(new Person(2, "Jane", "456 Elm St", "555-5678"));
+        database.add(new Person(2, null, "456 Elm St", "555-5678"));
         database.add(new Person(3, "John", "789 Oak St", "555-9012"));
         List<Person> result = database.findByPhone("555-5678");
-        assertThat(result).hasSize(1);
-        assertThat(result).extracting(Person::id).containsExactly(2);
+        assertThat(result).hasSize(0);
+        assertThat(result).extracting(Person::id).containsExactly();
     }
 
     @Test

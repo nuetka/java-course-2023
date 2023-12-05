@@ -46,8 +46,8 @@ public class CachingPersonDatabase implements PersonDatabase {
     public synchronized List<Person> findByName(String name) {
         List<Person> result = new ArrayList<>();
         List<Integer> ids = nameIndex.get(name);
-        if (ids != null) {
-            for (int id : ids) {
+        for (int id : ids) {
+            if (personMap.get(id).phoneNumber() != null && personMap.get(id).address() != null) {
                 result.add(personMap.get(id));
             }
         }
@@ -58,8 +58,8 @@ public class CachingPersonDatabase implements PersonDatabase {
     public synchronized List<Person> findByAddress(String address) {
         List<Person> result = new ArrayList<>();
         List<Integer> ids = addressIndex.get(address);
-        if (ids != null) {
-            for (int id : ids) {
+        for (int id : ids) {
+            if (personMap.get(id).phoneNumber() != null && personMap.get(id).name() != null) {
                 result.add(personMap.get(id));
             }
         }
@@ -70,8 +70,8 @@ public class CachingPersonDatabase implements PersonDatabase {
     public synchronized List<Person> findByPhone(String phone) {
         List<Person> result = new ArrayList<>();
         List<Integer> ids = phoneIndex.get(phone);
-        if (ids != null) {
-            for (int id : ids) {
+        for (int id : ids) {
+            if (personMap.get(id).address() != null && personMap.get(id).name() != null) {
                 result.add(personMap.get(id));
             }
         }

@@ -46,11 +46,9 @@ public class CachingPersonDatabase35 implements PersonDatabase {
         lock.writeLock().lock();
         try {
             Person person = personMap.remove(id);
-            if (person != null) {
-                removeFromIndex(nameIndex, person.name(), id);
-                removeFromIndex(addressIndex, person.address(), id);
-                removeFromIndex(phoneIndex, person.phoneNumber(), id);
-            }
+            removeFromIndex(nameIndex, person.name(), id);
+            removeFromIndex(addressIndex, person.address(), id);
+            removeFromIndex(phoneIndex, person.phoneNumber(), id);
         } finally {
             lock.writeLock().unlock();
         }
@@ -62,8 +60,8 @@ public class CachingPersonDatabase35 implements PersonDatabase {
         try {
             List<Person> result = new ArrayList<>();
             List<Integer> ids = nameIndex.get(name);
-            if (ids != null) {
-                for (int id : ids) {
+            for (int id : ids) {
+                if (personMap.get(id).phoneNumber() != null && personMap.get(id).address() != null) {
                     result.add(personMap.get(id));
                 }
             }
@@ -79,8 +77,8 @@ public class CachingPersonDatabase35 implements PersonDatabase {
         try {
             List<Person> result = new ArrayList<>();
             List<Integer> ids = addressIndex.get(address);
-            if (ids != null) {
-                for (int id : ids) {
+            for (int id : ids) {
+                if (personMap.get(id).phoneNumber() != null && personMap.get(id).name() != null) {
                     result.add(personMap.get(id));
                 }
             }
@@ -96,8 +94,8 @@ public class CachingPersonDatabase35 implements PersonDatabase {
         try {
             List<Person> result = new ArrayList<>();
             List<Integer> ids = phoneIndex.get(phone);
-            if (ids != null) {
-                for (int id : ids) {
+            for (int id : ids) {
+                if (personMap.get(id).address() != null && personMap.get(id).name() != null) {
                     result.add(personMap.get(id));
                 }
             }
