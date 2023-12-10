@@ -13,16 +13,19 @@ public class StatsResult {
         this.max = max;
     }
 
-    double getSum(){
+    double getSum() {
         return sum;
     }
-    double getAverage(){
+
+    double getAverage() {
         return average;
     }
-    double getMin(){
+
+    double getMin() {
         return min;
     }
-    double getMax(){
+
+    double getMax() {
         return max;
     }
 

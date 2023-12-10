@@ -1,6 +1,14 @@
 package edu.hw9.Task3;
 
+import lombok.extern.java.Log;
+
+@Log
 public class Main {
+
+    private Main() {
+
+    }
+
     public static void main(String[] args) {
         char[][] maze = {
             {'S', '.', '.', '#', '.', '#', '#'},
@@ -14,15 +22,15 @@ public class Main {
         boolean isPathFound = mazeSolver.solve();
 
         if (isPathFound) {
-            System.out.println("Path found!");
+            log.info("Path found!\n");
             for (char[] row : maze) {
                 for (char cell : row) {
-                    System.out.print(cell + " ");
+                    log.info(cell + " \n");
                 }
-                System.out.println();
+                log.info("\n");
             }
         } else {
-            System.out.println("No path found.");
+            log.info("No path found.\n");
         }
     }
 }

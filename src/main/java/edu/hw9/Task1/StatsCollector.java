@@ -17,14 +17,18 @@ import java.util.stream.Collectors;
 public class StatsCollector {
     private final Map<String, BlockingQueue<Double>> dataMap;
     private final ExecutorService executorService;
+
+    @SuppressWarnings("MagicNumber")
     public StatsCollector() {
         this.dataMap = new HashMap<>();
         this.executorService = Executors.newFixedThreadPool(5);
     }
+
     public void push(String metricName, double[] data) {
         List<Double> dataList = Arrays.stream(data).boxed().collect(Collectors.toList());
         dataMap.computeIfAbsent(metricName, k -> new LinkedBlockingQueue<>()).addAll(dataList);
     }
+
     public Map<String, StatsResult> getStats() throws InterruptedException, ExecutionException {
         Map<String, StatsResult> result = new HashMap<>();
         List<Future<?>> futures = new ArrayList<>();
@@ -53,6 +57,7 @@ public class StatsCollector {
         }
         return result;
     }
+
     public void shutdown() {
         executorService.shutdown();
     }

@@ -3,12 +3,12 @@ package edu.hw9.Task3;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
-public class MazeSolver {
+class MazeSolver {
     private final char[][] maze;
     private final int rows;
     private final int cols;
 
-    public MazeSolver(char[][] maze) {
+    MazeSolver(char[][] maze) {
         this.maze = maze;
         this.rows = maze.length;
         this.cols = maze[0].length;
@@ -23,7 +23,7 @@ public class MazeSolver {
         private final int row;
         private final int col;
 
-        public MazeTask(int row, int col) {
+        MazeTask(int row, int col) {
             this.row = row;
             this.col = col;
         }
